@@ -8,9 +8,7 @@ function Homepage() {
     <>
       <HeroContent/>
       <FeatureItem/>
-      <main>
-      </main>
-      </>
+    </>
   );
 }
 

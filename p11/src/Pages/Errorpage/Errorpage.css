@@ -27,7 +27,6 @@
       text-decoration: underline;
     }
   
-  
     @media screen and (max-width: 768px) { 
       .Error h1 {
         font-size: 200px; 
@@ -37,7 +36,6 @@
       }
     }
     
-  
     @media screen and (max-width: 500px) { 
       .Error h1 {
         font-size: 100px;

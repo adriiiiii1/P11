@@ -3,3 +3,11 @@
     flex-direction: row;
   }
   
+
+  @media (max-width: 700px) {
+    .features {
+      display: flex;
+      flex-direction: column;
+    }
+    
+  }

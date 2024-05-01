@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import './Item.css';
 
-
 function Item ({ icon, title, description }) {
   return (
     <div className='featureItem'>
@@ -14,7 +13,7 @@ function Item ({ icon, title, description }) {
 
 Item.propTypes = {
 icon: PropTypes.string.isRequired,
-titre: PropTypes.string.isRequired,
+title: PropTypes.string.isRequired, 
 description: PropTypes.string.isRequired
 }
 

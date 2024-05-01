@@ -1,0 +1,46 @@
+
+.form-edit {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    align-items: center;
+    margin: auto;
+}
+
+.form-edit h2 {
+    font-size: 35px;
+}
+
+.input-edit {
+    margin: 7px;
+}
+
+.input-edit label {
+    margin-right: 10px;
+}
+
+.input-edit input {
+    border-radius: 3px;
+    color: black;
+}
+
+.btn-edit {
+    padding: 15px;
+    display: flex;
+    gap: 15px;
+}
+
+.btn-edit button {
+    border-radius: 3px;
+    padding: 10px 20px;
+    color: #fff;
+    border-color: #00bc77;
+    background-color: #00bc77;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+input:disabled {
+    opacity: 0.5;
+    background-color: #ffffff;
+  }

@@ -32,3 +32,43 @@
   max-width: 100%;
   width: 200px;
 }
+
+.sign-in-icon-header{
+  padding-right: 7px; 
+}
+
+.username-header{
+  font-weight: bold;
+  padding-right: 20px;
+}
+
+
+
+@media (max-width: 500px) {
+  .username-header{
+    padding-right: 7px;
+  }
+
+  .main-nav-item {
+font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .username-header{
+    padding-right: 5px;
+  }
+
+  .main-nav-item {
+font-size: 0.6rem;
+  }
+
+}
+
+@media (max-width: 400px) {
+
+  .main-nav-item {
+font-size: 0.45rem;
+  }
+
+}

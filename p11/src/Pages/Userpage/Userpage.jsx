@@ -1,47 +1,31 @@
-import './Userpage.css';
+import React, { useContext, useEffect } from 'react';
+import { useGetUserProfileQuery } from '../../app/API';
+import TransactionItem from "../../Component/TransactionItem/TransactionItem.jsx";
+import Welcome from "../../Component/Welcome/Welcome.jsx";
+import "./Userpage.css";
+import UserContext from '../../UserContext.js'; 
+import Errorpage from '../Errorpage/Errorpage.jsx';
 
-function Userpage() {
-  return (
-    <>
-      <main className="main bg-dark">
-        <div className="header">
-          <h1>Welcome back<br />Tony Jarvis!</h1>
-          <button className="edit-button">Edit Name</button>
-        </div>
-        <h2 className="sr-only">Accounts</h2>
-        <section className="account">
-          <div className="account-content-wrapper">
-            <h3 className="account-title">Argent Bank Checking (x8349)</h3>
-            <p className="account-amount">$2,082.79</p>
-            <p className="account-amount-description">Available Balance</p>
-          </div>
-          <div className="account-content-wrapper cta">
-            <button className="transaction-button">View transactions</button>
-          </div>
-        </section>
-        <section className="account">
-          <div className="account-content-wrapper">
-            <h3 className="account-title">Argent Bank Savings (x6712)</h3>
-            <p className="account-amount">$10,928.42</p>
-            <p className="account-amount-description">Available Balance</p>
-          </div>
-          <div className="account-content-wrapper cta">
-            <button className="transaction-button">View transactions</button>
-          </div>
-        </section>
-        <section className="account">
-          <div className="account-content-wrapper">
-            <h3 className="account-title">Argent Bank Credit Card (x8349)</h3>
-            <p className="account-amount">$184.30</p>
-            <p className="account-amount-description">Current Balance</p>
-          </div>
-          <div className="account-content-wrapper cta">
-            <button className="transaction-button">View transactions</button>
-          </div>
-        </section>
-      </main>
-    </>
-  );
+export default function UserLogin() {
+    const { setIsLoggedIn, setUsername } = useContext(UserContext);
+    const token = localStorage.getItem('token');
+
+    const { data: user, isLoading, error } = useGetUserProfileQuery(token);
+
+    useEffect(() => {
+        if (user && user.body) {
+            setUsername(user.body.userName);
+            setIsLoggedIn(true);
+        }
+    }, [user, setIsLoggedIn, setUsername]);
+
+    if (isLoading) return 'Loading...';
+    if (error) return <Errorpage />;
+
+    return (
+        <main className="bg-dark">
+            {user && user.body && <Welcome firstName={user.body.firstName} lastName={user.body.lastName} username={user.body.userName} />}
+            <TransactionItem />
+        </main>
+    );
 }
-
-export default Userpage;
