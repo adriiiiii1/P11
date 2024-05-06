@@ -27,6 +27,9 @@ const Welcome = ({ firstName, lastName, username }) => {
         }
         setEditMode(false);
     };
+    const handleCancel = () => {
+        setEditMode(false); 
+    };
 
     if (isLoading) return 'Updating...';
     if (isError) return 'An error occurred';
@@ -35,7 +38,14 @@ const Welcome = ({ firstName, lastName, username }) => {
     return (
         <div className="header">
             {editMode ? (
-                <EditName firstName={firstName} lastName={lastName} username={username} onNameChange={handleNameChange} />) : (
+                <EditName 
+                    firstName={firstName} 
+                    lastName={lastName} 
+                    username={username} 
+                    onNameChange={handleNameChange} 
+                    onClose={handleCancel} 
+                />
+            ) : (
                 <>
                     <h1 className='user-title'>Welcome back<br />{username || `${firstName} ${lastName}`}!</h1>
                     <button className="edit-button" onClick={handleEdit}>Edit Name</button>

@@ -1,20 +1,19 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
-import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/img/argentBankLogo.webp';
-import UserContext from '../../UserContext.js'; 
-
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutUser } from '../../app/actions/user.action';
 import './Header.css';
 
 function Header() {
-    const { isLoggedIn, username, setIsLoggedIn, setUsername } = useContext(UserContext);
+    const dispatch = useDispatch();
+    const { isLoggedIn, username } = useSelector((state) => state.user);
 
     const handleSignOut = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('username');
-        setIsLoggedIn(false);
-        setUsername('');
+        dispatch(logoutUser());
     };
 
     return (

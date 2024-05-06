@@ -1,29 +1,32 @@
 import React, { useState } from 'react';
 import './EditName.css';
 import { useUpdateUserProfileMutation } from '../../app/API'; 
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser } from '../../app/actions/user.action';
 
-const EditName = ({ firstName, lastName, username, onNameChange }) => {
+const EditName = ({ firstName, lastName, onClose }) => {
+    const username = useSelector((state) => state.user.username);
     const [newUsername, setNewUsername] = useState(username || '');
     const [updateUserProfile] = useUpdateUserProfileMutation();
+    const dispatch = useDispatch();
 
     const handleSave = async () => {
-    
         if (newUsername) {
             try {
                 const token = localStorage.getItem('token');
                 // appel API pour l'update
                 await updateUserProfile({ token, username: newUsername });
-                onNameChange(newUsername);
+                dispatch(loginUser(newUsername));
             } catch (error) {
                 console.error('Failed to update user profile:', error); 
             }
         }
     };
 
-    const handleCancel = () => {
-        onNameChange(null);
+    const handleCancel = (e) => {
+        e.preventDefault(); 
+        onClose();
     };
-
     return (
         <form className="form-edit">
             <h2>Edit user info</h2>
